@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EventSphere</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EventSphere.styles.css" asp-append-version="true" />
+    <style>
+        /* 🌌 Dark Theme */
+        body {
+            background: linear-gradient(135deg, #121212, #1f1f1f);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-attachment: fixed;
+            color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: #1c1c1c;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #bb86fc !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            color: #e0e0e0 !important;
+        }
+
+        .container {
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            border-top: 1px solid #333;
+            padding: 1rem 0;
+        }
+
+            footer a {
+                color: #bbbbbb !important;
+            }
+
+        a {
+            color: #90caf9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Event" asp-action="Index">EventSphere</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="text-center text-muted">
+        <div class="container">
+            <p class="mb-0">&copy; @DateTime.Now.Year - EventSphere</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

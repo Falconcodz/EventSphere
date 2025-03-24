@@ -1,0 +1,119 @@
+@model EventSphere.Models.Event
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<style>
+    /* Dark theme styling for Edit Event form */
+    .card {
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+    }
+
+    .card-title {
+        color: #90caf9 !important;
+    }
+
+    .form-label {
+        color: #e0e0e0;
+    }
+
+    .form-control {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+        border: 1px solid #444;
+    }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            background-color: #1e1e1e;
+            color: #fff;
+            border-color: #bb86fc;
+            box-shadow: 0 0 0 0.2rem rgba(187, 134, 252, 0.25);
+        }
+
+    .text-danger {
+        color: #ff6b6b !important;
+    }
+
+    .btn-success {
+        background-color: #4caf50;
+        border-color: #4caf50;
+    }
+
+        .btn-success:hover {
+            background-color: #43a047;
+            border-color: #388e3c;
+        }
+
+    .btn-outline-secondary {
+        color: #ccc;
+        border-color: #555;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #444;
+            border-color: #666;
+            color: #fff;
+        }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body">
+                <h2 class="card-title text-center text-primary mb-4">
+                    <i class="bi bi-pencil-square"></i> Edit Event
+                </h2>
+
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Event title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Event description..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Date" class="form-label"></label>
+                            <input asp-for="Date" type="date" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Time" class="form-label"></label>
+                            <input asp-for="Time" type="time" class="form-control" />
+                            <span asp-validation-for="Time" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Location" class="form-label"></label>
+                        <input asp-for="Location" class="form-control" placeholder="Event location" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-lg me-2">
+                            <i class="bi bi-save"></i> Save Changes
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

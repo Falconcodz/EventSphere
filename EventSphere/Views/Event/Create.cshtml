@@ -1,0 +1,133 @@
+@model EventSphere.Models.Event
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<style>
+    /* Dark theme styling for Create Event form */
+    .card {
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+    }
+
+    .form-label {
+        color: #e0e0e0;
+    }
+
+    .form-control {
+        background-color: #444;
+        color: #f0f0f0;
+        border: 1px solid #444;
+    }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            background-color: #1e1e1e;
+            color: #fff;
+            border-color: #bb86fc;
+            box-shadow: 0 0 0 0.2rem rgba(187, 134, 252, 0.25);
+        }
+
+    .text-danger {
+        color: #ff6b6b !important;
+    }
+
+    .btn-success {
+        background-color: #4caf50;
+        border-color: #4caf50;
+    }
+
+        .btn-success:hover {
+            background-color: #43a047;
+            border-color: #388e3c;
+        }
+
+    .btn-outline-secondary {
+        color: #ccc;
+        border-color: #555;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #444;
+            border-color: #666;
+            color: #fff;
+        }
+
+    /* Dark mode styles for input[type="date"] and input[type="time"] icons */
+    input[type="date"],
+    input[type="time"] {
+        color-scheme: dark; /* Tells the browser to use dark native styles */
+        background-color: #444;
+        color: #fff;
+        border: 1px solid #444;
+    }
+
+        /* For better cross-browser rendering */
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        input[type="date"]:focus,
+        input[type="time"]:focus {
+            border-color: #bb86fc;
+            box-shadow: 0 0 0 0.2rem rgba(187, 134, 252, 0.25);
+        }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4 text-primary fw-bold">
+                    <i class="bi bi-calendar-plus"></i> Create New Event
+                </h2>
+
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Event title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Event description..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Date" class="form-label"></label>
+                            <input asp-for="Date" type="date" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Time" class="form-label"></label>
+                            <input asp-for="Time" type="time" class="form-control" />
+                            <span asp-validation-for="Time" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Location" class="form-label"></label>
+                        <input asp-for="Location" class="form-control" placeholder="Event location" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-check-circle"></i> Create Event
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

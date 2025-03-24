@@ -1,0 +1,122 @@
+@model IEnumerable<EventSphere.Models.Event>
+
+@{
+    ViewData["Title"] = "Events List";
+}
+
+<style>
+    /* Dark theme fixes for Events List */
+    body {
+        background-color: #121212;
+        color: #f0f0f0;
+    }
+
+    h2 {
+        color: #90caf9 !important;
+    }
+
+    .text-muted {
+        color: #bbb !important;
+    }
+
+    .btn-success {
+        background-color: #4caf50;
+        border-color: #4caf50;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background-color: #43a047;
+        border-color: #388e3c;
+    }
+
+    .alert-info {
+        background-color: #1e3a5f;
+        border-color: #29668b;
+        color: #d0eaff;
+    }
+
+    .table-responsive {
+        background-color: #2a2a2a;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+
+    table.table {
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+    }
+
+    .table thead {
+        background-color: #333;
+        color: #f0f0f0;
+    }
+
+    .table td,
+    .table th {
+        border-color: #444;
+    }
+
+    .btn-outline-warning {
+        color: #ffca28;
+        border-color: #ffca28;
+    }
+
+    .btn-outline-danger {
+        color: #ef5350;
+        border-color: #ef5350;
+    }
+
+</style>
+
+<div class="text-center mb-4">
+    <h2 class="fw-bold">Your Events</h2>
+    <p class="text-muted">Manage your community events here.</p>
+    <a asp-action="Create" class="btn btn-success btn-lg mt-3">
+        <i class="bi bi-plus-circle"></i> Create New Event
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        <strong>No events found.</strong> Click the <em>"Create New Event"</em> button above to add your first one.
+    </div>
+}
+else
+{
+    <div class="table-responsive shadow rounded">
+        <table class="table align-middle border">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Time.ToString(@"hh\:mm")</td>
+                        <td>@item.Location</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm me-1">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
